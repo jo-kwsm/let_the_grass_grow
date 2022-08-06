@@ -3,12 +3,9 @@ package models
 import (
 	"grass_backend/db"
 	"log"
-
-	"gorm.io/gorm"
 )
 
 type Training struct {
-	gorm.Model
 	Date  string `json:"date"`
 	Count int16  `json:"count"`
 }

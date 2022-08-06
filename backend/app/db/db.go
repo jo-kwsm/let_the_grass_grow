@@ -12,7 +12,7 @@ import (
 var db *gorm.DB
 
 func Init() {
-	dbconf := fmt.Sprintf("%s:%s@db:3306/%s?charset=utf8", os.Getenv("MYSQL_USER"), os.Getenv("MYSQL_PASSWORD"), os.Getenv("MYSQL_DATABASE"))
+	dbconf := fmt.Sprintf("%s:%s@(db:3306)/%s?charset=utf8", os.Getenv("MYSQL_USER"), os.Getenv("MYSQL_PASSWORD"), os.Getenv("MYSQL_DATABASE"))
 
 	var err error
 	db, err = gorm.Open(mysql.Open(dbconf), &gorm.Config{})

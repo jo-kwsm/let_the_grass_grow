@@ -18,6 +18,7 @@ func NewRouter() *gin.Engine {
 		trainingGroup := v1.Group("training")
 		{
 			training := new(controllers.TrainingController)
+			trainingGroup.GET("/", training.RetrieveAll)
 			trainingGroup.GET("/:date", training.Retrieve)
 		}
 	}

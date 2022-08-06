@@ -25,3 +25,13 @@ func (t TrainingController) Retrieve(c *gin.Context) {
 	c.JSON(http.StatusBadRequest, gin.H{"message": "bad request"})
 	c.Abort()
 }
+
+func (t TrainingController) RetrieveAll(c *gin.Context) {
+	trainings, err := trainingModel.FindAll()
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"message": "Error to retrieve training", "error": err})
+		c.Abort()
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{"trainings": trainings})
+}

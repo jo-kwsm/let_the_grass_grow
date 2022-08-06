@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   go:
-    container_name: glass-go
+    container_name: grass-go
     build:
       context: ./backend
       dockerfile: Dockerfile
@@ -20,7 +20,7 @@ services:
         target: /go/src
 
   db:
-    container_name: glass-db
+    container_name: grass-db
     build:
       context: ./mysql
       dockerfile: Dockerfile
@@ -40,4 +40,4 @@ services:
 
 volumes:
   mysql_volume:
-    name: glass-volume
+    name: grass-volume

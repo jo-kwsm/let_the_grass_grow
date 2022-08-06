@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  go:
+    container_name: glass-go
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    command: go run cmd/main.go
+    tty: true
+    ports:
+      - 8080:8080
+    env_file:
+      - ./mysql/.env
+    depends_on:
+      - db
+    volumes:
+      - type: bind
+        source: ./backend/app
+        target: /go/src
+
+  db:
+    container_name: glass-db
+    build:
+      context: ./mysql
+      dockerfile: Dockerfile
+    tty: true
+    platform: linux/x86_64
+    ports:
+      - 3306:3306
+    env_file:
+      - ./mysql/.env
+    volumes:
+      - type: volume
+        source: mysql_volume
+        target: /var/lib/mysql
+      - type: bind
+        source: ./mysql/initdb.d
+        target: /docker-entrypoint-initdb.d
+
+volumes:
+  mysql_volume:
+    name: glass-volume

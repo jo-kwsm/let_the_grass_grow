@@ -1,7 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"grass_backend/server"
+)
 
 func main() {
-	fmt.Println("Hello world!")
+	server.Init()
 }

@@ -22,6 +22,19 @@ func (t Training) GetByDate(date string) (*Training, error) {
 	return &record, nil
 }
 
+func (t Training) Find(start, end string) ([]Training, error) {
+	db := db.GetDB()
+
+	var records []Training
+
+	if result := db.Where("date BETWEEN ? AND ?", start, end).Find(&records); result.Error != nil {
+		log.Fatal("Could not find record")
+		return nil, result.Error
+	}
+
+	return records, nil
+}
+
 func (t Training) FindAll() ([]Training, error) {
 	db := db.GetDB()
 

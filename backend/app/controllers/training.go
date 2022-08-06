@@ -26,8 +26,23 @@ func (t TrainingController) Retrieve(c *gin.Context) {
 	c.Abort()
 }
 
-func (t TrainingController) RetrieveAll(c *gin.Context) {
-	trainings, err := trainingModel.FindAll()
+func (t TrainingController) RetrieveList(c *gin.Context) {
+	start := c.Query("start")
+	end := c.Query("end")
+
+	var trainings []models.Training
+	var err error
+
+	if start == "" && end == "" {
+		trainings, err = trainingModel.FindAll()
+	} else if start != "" && end != "" {
+		trainings, err = trainingModel.Find(start, end)
+	} else {
+		c.JSON(http.StatusInternalServerError, gin.H{"message": "Wrong query"})
+		c.Abort()
+		return
+	}
+
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"message": "Error to retrieve training", "error": err})
 		c.Abort()

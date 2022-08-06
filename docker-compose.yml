@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   go:
@@ -13,7 +13,8 @@ services:
     env_file:
       - ./mysql/.env
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     volumes:
       - type: bind
         source: ./backend/app
@@ -37,7 +38,8 @@ services:
       - type: bind
         source: ./mysql/initdb.d
         target: /docker-entrypoint-initdb.d
-
+    healthcheck:
+      test: mysqladmin ping -h 127.0.0.1 -u$$MYSQL_USER -p$$MYSQL_PASSWORD
 volumes:
   mysql_volume:
     name: grass-volume

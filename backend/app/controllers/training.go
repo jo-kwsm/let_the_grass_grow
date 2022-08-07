@@ -53,6 +53,7 @@ func (t TrainingController) RetrieveList(c *gin.Context) {
 			return
 		}
 		c.JSON(http.StatusOK, gin.H{"trainings": trainings})
+		return
 	}
 	c.JSON(http.StatusBadRequest, gin.H{"message": "bad request"})
 	c.Abort()

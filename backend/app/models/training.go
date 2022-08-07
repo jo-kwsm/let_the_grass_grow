@@ -11,7 +11,7 @@ type Training struct {
 	Walking  int16  `json:"walking"`
 	Running  int16  `json:"running"`
 	Cycling  int16  `json:"cycling"`
-	Swimming int16  `json:swimming`
+	Swimming int16  `json:"swimming"`
 }
 
 func (t Training) GetByDate(user, date string) (*Training, error) {

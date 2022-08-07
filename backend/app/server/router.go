@@ -3,11 +3,16 @@ package server
 import (
 	"grass_backend/controllers"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
 
 func NewRouter() *gin.Engine {
 	router := gin.Default()
+
+	config := cors.DefaultConfig()
+	config.AllowAllOrigins = true
+	router.Use(cors.New(config))
 
 	router.GET("/", func(c *gin.Context) {
 		c.JSON(200, gin.H{"status": "ok"})

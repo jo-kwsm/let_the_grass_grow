@@ -2,14 +2,14 @@
 
 ## Endpoint
 
-- `/v1/training/`: 全件取得
+- `/v1/training/?user=jo-kwsm`: 全件取得
 
-`{"trainings":[{"date":"2022-08-01","count":3},{"date":"2022-08-02","count":4},{"date":"2022-08-03","count":1}]}`
+`{"trainings":[{"user":"jo-kwsm","date":"2020-01-01","walking":0,"running":0,"cycling":0,"swimming":0},{"user":"jo-kwsm","date":"2020-01-02","walking":0,"running":0,"cycling":0,"swimming":4915},{"user":"jo-kwsm","date":"2020-01-03","walking":0,"running":374,"cycling":7500,"swimming":0},{"user":"jo-kwsm","date":"2020-01-04","walking":0,"running":0,"cycling":0,"swimming":7510}]}`
 
-- `/v1/training/?start=2022-08-02&end=2022-08-03`: 期間指定取得
+- `/v1/training/?user=jo-kwsm&start=2022-08-02&end=2022-08-03`: 期間指定取得
 
-`{"trainings":[{"date":"2022-08-02","count":4},{"date":"2022-08-03","count":1}]}`
+`{"trainings":[{"user":"jo-kwsm","date":"2022-08-02","walking":0,"running":0,"cycling":0,"swimming":0},{"user":"jo-kwsm","date":"2022-08-03","walking":7023,"running":0,"cycling":0,"swimming":0}]}`
 
-- `/v1/training/2022-08-02`: 日付指定取得
+- `/v1/training/2022-08-02?user=jo-kwsm`: 日付指定取得
 
-`{"training":{"date":"2022-08-02","count":4}}`
+`{"training":{"user":"jo-kwsm","date":"2022-08-02","walking":0,"running":0,"cycling":0,"swimming":0}}`
